@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.handler</groupId>
+  <artifactId>stackHandler</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>umg.edu.gt.data-structure</groupId>
+      <artifactId>umg.edu.gt.data-structure.stack</artifactId>
+      <version>0.0.3-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>stackHandler.handler.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>obfuscate</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.wvengen</groupId>
+            <artifactId>proguard-maven-plugin</artifactId>
+            <version>2.6.0</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals><goal>proguard</goal></goals>
+              </execution>
+            </executions>
+            <configuration>
+              <obfuscate>true</obfuscate>
+              <injar>${project.build.finalName}.jar</injar>
+              <outjar>${project.build.finalName}-ofuscado.jar</outjar>
+              <options>
+                <option>-keep public class stackHandler.handler.Main { public static void main(java.lang.String[]); }</option>
+                <option>-dontwarn</option>
+              </options>
+              <libs>
+                <lib>${java.home}/lib/rt.jar</lib>
+              </libs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
