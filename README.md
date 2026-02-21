@@ -1,4 +1,4 @@
-Programación de la Estructura y Lógica
+# Documentación
 Primero entendi la clase SymbolValidator. En esta parte, utilicé la pila que tenia antes para crear un algoritmo que verifica si los paréntesis y corchetes en una expresión están balanceados. 
 Finalmente, hice un archivo Main.java con varios casos de prueba para imprimir los resultados en la consola.
 # Gestión del Proyecto 
